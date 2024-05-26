@@ -13,7 +13,8 @@ public class GameManager : MonoBehaviour
     public GameObject playerPrefab;
     public Transform spawnPoint;
     public float respawnDelay = 2f;
-
+    public RawImage img;
+    public Canvas canvas;
     private int score = 0;
     private bool gameOver = false;
 
@@ -31,6 +32,12 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
+        Canvas canvas = img.GetComponent<Canvas>();
+        if(canvas != null)
+        {
+            canvas.sortingOrder = -1;
+        }
+        img.transform.SetAsFirstSibling();
         UpdateScoreText();
     }
 

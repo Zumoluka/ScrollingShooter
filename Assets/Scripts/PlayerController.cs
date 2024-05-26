@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 5;
     public float padding = 1f;
     private float score = 0f;
-    public Animator animator;
+
 
     void Start()
     {
@@ -34,7 +34,7 @@ public class PlayerController : MonoBehaviour
         // Dispara un proyectil al presionar la tecla Espacio
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            animator.SetTrigger("Shoot");
+
             Shoot();
         }
 
@@ -51,6 +51,10 @@ public class PlayerController : MonoBehaviour
         float clampedX = Mathf.Clamp(transform.position.x, -screenWidth + padding, screenWidth - padding);
         float clampedY = Mathf.Clamp(transform.position.y, -Camera.main.orthographicSize + padding, Camera.main.orthographicSize - padding);
         transform.position = new Vector3(clampedX, clampedY, transform.position.z);
+        if (score == 500)
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     void Shoot()
