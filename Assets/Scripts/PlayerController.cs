@@ -16,6 +16,7 @@ public class PlayerController : MonoBehaviour
     public float speed = 5;
     public float padding = 1f;
     private float score = 0f;
+    public Animator animator;
 
     void Start()
     {
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
         // Dispara un proyectil al presionar la tecla Espacio
         if (Input.GetKeyDown(KeyCode.Space))
         {
+            animator.SetTrigger("Shoot");
             Shoot();
         }
 
@@ -86,5 +88,12 @@ public class PlayerController : MonoBehaviour
     void UpdateScoreText()
     {
         scoreText.text = "Score: " + Mathf.FloorToInt(score);
+    }
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.gameObject.CompareTag("powerup"))
+        {
+            score += 100;
+        }
     }
 }

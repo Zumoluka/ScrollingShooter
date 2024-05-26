@@ -7,7 +7,7 @@ public class Projectile : MonoBehaviour
     public float speed = 10f;  // Velocidad del proyectil
     private float screenBottom;
 
-    void Start()
+    public void Start() 
     {
         // Calcula el límite inferior de la pantalla
         screenBottom = Camera.main.ScreenToWorldPoint(new Vector3(0, 0, Camera.main.transform.position.z)).y;
